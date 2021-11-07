@@ -1,3 +1,5 @@
 Do konfliktu
 Zmiana na branchu main
 Conflict 2: Zmiana na main
+
+Commit 1 do rebase
