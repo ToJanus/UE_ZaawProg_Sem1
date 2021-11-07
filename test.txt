@@ -1,2 +1,3 @@
 Zmiana w branchu test
 Conflict nr 2 w druga strone, branch test
+I jeszcze
