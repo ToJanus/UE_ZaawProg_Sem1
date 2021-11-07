@@ -1,1 +1,1 @@
-# UE_ZaawProg_Sem1
+# UE Zaawansowane Programowanie - Semestr 1
