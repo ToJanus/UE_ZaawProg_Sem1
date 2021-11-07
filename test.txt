@@ -4,3 +4,4 @@ Conflict 2: Zmiana na main
 
 Commit 1 do rebase
 Commit 2 do rebase
+Commit 3 do rebase
