@@ -1,6 +1,7 @@
 def multiply_by_two(numbers):
     return [n * 2 for n in numbers]
 
+
 def multiply_by_two_in_for(numbers):
     list_to_return = []
     for n in numbers:
