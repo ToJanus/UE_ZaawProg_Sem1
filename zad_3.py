@@ -3,7 +3,11 @@ getcontext().prec = 2
 
 
 class Property:
-    def __init__(self, area: str, rooms: int, price: float, address: str) -> None:
+    def __init__(self,
+                 area: str,
+                 rooms: int,
+                 price: float,
+                 address: str) -> None:
         self._area: str = area
         self._rooms: int = rooms
         self._price: Decimal = Decimal(str(price))
@@ -32,20 +36,27 @@ class Property:
     @price.setter
     def price(self, value: Decimal) -> None:
         self._price = Decimal(str(value))
-        
+
     @property
     def address(self) -> str:
         return self._address
-    
+
     @address.setter
     def address(self, value: str) -> None:
         self._address = value
 
     def __str__(self) -> str:
-        return f"area: {self.area}, rooms: {self.rooms}, price: {self.price}, address: {self.address}"
+        return f"area: {self.area}, rooms: {self.rooms}, " \
+               f"price: {self.price}, address: {self.address}"
+
 
 class House(Property):
-    def __init__(self, area: str, rooms: int, price: float, address: str, plot: int) -> None:
+    def __init__(self,
+                 area: str,
+                 rooms: int,
+                 price: float,
+                 address: str,
+                 plot: int) -> None:
         super().__init__(area, rooms, price, address)
         self._plot: int = plot
 
@@ -60,8 +71,14 @@ class House(Property):
     def __str__(self) -> str:
         return f"Property of house -> {super().__str__()}, plot: {self.plot}"
 
+
 class Flat(Property):
-    def __init__(self, area: str, rooms: int, price: float, address: str, floor: int) -> None:
+    def __init__(self,
+                 area: str,
+                 rooms: int,
+                 price: float,
+                 address: str,
+                 floor: int) -> None:
         super().__init__(area, rooms, price, address)
         self._floor: int = floor
 
@@ -74,7 +91,8 @@ class Flat(Property):
         self._floor = value
 
     def __str__(self) -> str:
-        return f"Property of flat -> {super().__str__()}, floor: {self.floor}\n"
+        return f"Property of flat -> {super().__str__()}, " \
+               f"floor: {self.floor}\n"
 
 
 if __name__ == "__main__":

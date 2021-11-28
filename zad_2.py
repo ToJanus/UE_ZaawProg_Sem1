@@ -4,7 +4,13 @@ from zad_1 import Student
 
 
 class Library:
-    def __init__(self, city: str, street: str, zip_code: str, open_hours: str, phone: int) -> None:
+    def __init__(
+            self,
+            city: str,
+            street: str,
+            zip_code: str,
+            open_hours: str,
+            phone: int) -> None:
         self._city: str = city
         self._street: str = street
         self._zip_code: str = zip_code
@@ -52,7 +58,10 @@ class Library:
         self._phone = value
 
     def __str__(self) -> str:
-        return f"city: {self._city}, street: {self._street}, zip_code: {self._zip_code}, open_hours: {self._open_hours}, " \
+        return f"city: {self._city}, " \
+               f"street: {self._street}, " \
+               f"zip_code: {self._zip_code}, " \
+               f"open_hours: {self._open_hours}, " \
                f"phone: {self._phone}"
 
 
@@ -140,8 +149,11 @@ class Employee:
         self._phone = value
 
     def __str__(self) -> str:
-        return f"{self._first_name} {self._last_name}, hire_date: {self._hire_date}, birth_date: {self._birth_date}, " \
-               f"city: {self._city}, street: {self._street}, zip_code: {self._zip_code}, phone: {self._phone}"
+        return f"{self._first_name} {self._last_name}, " \
+               f"hire_date: {self._hire_date}, " \
+               f"birth_date: {self._birth_date}, " \
+               f"city: {self._city}, street: {self._street}, " \
+               f"zip_code: {self._zip_code}, phone: {self._phone}"
 
 
 class Order:
@@ -191,7 +203,8 @@ class Order:
         books_str = ""
         for book in self.books:
             books_str += str(book)
-        return f"employee: {self.employee},\nstudent: {self.student},\nbooks: {books_str},\norder_date: {self.order_date}\n "
+        return f"employee: {self.employee},\nstudent: {self.student},\n" \
+               f"books: {books_str},\norder_date: {self.order_date}\n "
 
 
 class Book:
@@ -248,8 +261,11 @@ class Book:
         self._number_of_pages = value
 
     def __str__(self) -> str:
-        return f"library: {self.library}, publication_date: {self.publication_date}, author_name: {self.author_name}, " \
-               f"author_surname: {self.author_surname}, number_of_pages: {self.number_of_pages}"
+        return f"library: {self.library}, " \
+               f"publication_date: {self.publication_date}, " \
+               f"author_name: {self.author_name}, " \
+               f"author_surname: {self.author_surname}, " \
+               f"number_of_pages: {self.number_of_pages}"
 
 
 if __name__ == "__main__":
@@ -272,13 +288,15 @@ if __name__ == "__main__":
                                   city=f"Town{i}",
                                   street=f"Street{i}",
                                   zip_code=f"{i + 1}{i + 1}-{i}0{i + 1}",
-                                  phone=i) for i in range(3)]
+                                  phone=i)
+                         for i in range(3)]
     list_of_students = [Student(name=f"Student{i}",
                                 marks=i * 11) for i in range(3)]
     list_of_orders = [Order(employee=list_of_employees[i],
                             student=list_of_students[i],
                             books=[list_of_books[i]],
-                            order_date=datetime(2021, 10, 31)) for i in range(2)]
+                            order_date=datetime(2021, 10, 31))
+                      for i in range(2)]
 
     for order in list_of_orders:
         print(order)
