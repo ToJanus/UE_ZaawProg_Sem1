@@ -23,11 +23,13 @@ class Brewery:
 
     def __str__(self):
         return f"Id: {self.id}, Name: {self.name}\n" \
-               f"Street: {self.street}, City: {self.city}, State: {self.state}, Code: {self.postal_code}"
+               f"Street: {self.street}, City: {self.city}, " \
+               f"State: {self.state}, Code: {self.postal_code}"
 
 
 payload = {'per_page': 20}
-response = requests.get('https://api.openbrewerydb.org/breweries', params=payload)
+response = requests.get('https://api.openbrewerydb.org/breweries',
+                        params=payload)
 
 list_of_breweries = [Brewery(x) for x in response.json()]
 
