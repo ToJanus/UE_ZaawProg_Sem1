@@ -24,21 +24,21 @@ def detect(obraz_path):
     rows = img.shape[0]
     cols = img.shape[1]
     cvNet.setInput(cv2.dnn.blobFromImage(img, size=(600, 600), swapRB=True, crop=False))
-    cvOut = cvNet.forward()
-    with open("models_tensorflow/classes.json") as f:
-        classes = json.load(f)
+    cv_out = cvNet.forward()
+    with open("models_tensorflow/classes.json") as file:
+        classes = json.load(file)
     licz_osob = 0
-    for i in range(cvOut.shape[2]):
-        score = float(cvOut[0, 0, i, 2])
-        if score > 0.5:
-            clasa = classes[str(int(cvOut[0, 0, i, 1]))]
-            if clasa == "person":
+    for i in range(cv_out.shape[2]):
+        wynik = float(cv_out[0, 0, i, 2])
+        if wynik > 0.5:
+            klasa = classes[str(int(cv_out[0, 0, i, 1]))]
+            if klasa == "person":
                 licz_osob += 1
-                cvObj = cvOut[0, 0, i]
-                left = cvObj[3] * cols
-                top = cvObj[4] * rows
-                right = cvObj[5] * cols
-                bottom = cvObj[6] * rows
+                cv_obj = cv_out[0, 0, i]
+                left = cv_obj[3] * cols
+                top = cv_obj[4] * rows
+                right = cv_obj[5] * cols
+                bottom = cv_obj[6] * rows
                 cv2.rectangle(img, (int(left), int(top)), (int(right), int(bottom)), (23, 23, 210), thickness=2)
                 cv2.putText(img, f"Osoba {licz_osob}", (int(left), int(bottom) + 20), cv2.FONT_HERSHEY_SIMPLEX, 0.4,
                             (23, 23, 210), 2)

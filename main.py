@@ -8,7 +8,7 @@ if __name__ == "__main__":
     parser.add_argument('--obraz', default=None, help='Ścieżka do pojednyczego obrazu')
     args = parser.parse_args()
 
-    if args.obraz == None:
+    if args.obraz is None:
         run()
     else:
         run(args.obraz)
