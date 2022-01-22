@@ -2,6 +2,8 @@ import os
 from pathlib import Path
 
 import json
+from time import perf_counter
+
 import cv2
 
 
@@ -24,7 +26,10 @@ def detect(obraz_path):
     rows = img.shape[0]
     cols = img.shape[1]
     cvNet.setInput(cv2.dnn.blobFromImage(img, size=(600, 600), swapRB=True, crop=False))
+    start_time = perf_counter()
     cv_out = cvNet.forward()
+    end_time = perf_counter() - start_time
+    print(f"Czas detekcji dla pliku {obraz_path}: {end_time} s")
     with open("models_tensorflow/classes.json") as file:
         classes = json.load(file)
     licz_osob = 0
@@ -43,6 +48,7 @@ def detect(obraz_path):
                 cv2.putText(img, f"Osoba {licz_osob}", (int(left), int(bottom) + 20), cv2.FONT_HERSHEY_SIMPLEX, 0.4,
                             (23, 23, 210), 2)
 
-    cv2.putText(img, f"Wykryto {licz_osob} osob.", (10, rows - 40), cv2.FONT_HERSHEY_SIMPLEX, 1.2, (23, 23, 210), 3)
+    cv2.putText(img, f"Wykryto {licz_osob} osob", (10, rows - 40), cv2.FONT_HERSHEY_SIMPLEX, 1.2, (23, 23, 210), 3)
+    cv2.putText(img, f"Czas detekcji: {round(end_time, 3)} s", (10, rows - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 0, 230), 2)
     cv2.imshow("Obraz", img)
     cv2.waitKey()
