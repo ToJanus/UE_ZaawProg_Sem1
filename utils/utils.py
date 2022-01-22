@@ -7,7 +7,7 @@ from time import perf_counter
 import cv2
 
 
-def run(obraz=None):
+def run(obraz = None) -> None:
     if obraz is None:
         base_str = Path('images')
         obr_list = os.listdir(base_str)
@@ -18,7 +18,7 @@ def run(obraz=None):
         detect(obraz)
 
 
-def detect(obraz_path):
+def detect(obraz_path) -> None:
     img = cv2.imread(str(obraz_path))
     cvNet = cv2.dnn.readNetFromTensorflow('models_tensorflow/frozen_inference_graph.pb',
                                           'models_tensorflow/frozen_inference_graph.pbtxt')
